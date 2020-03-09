@@ -7,6 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.common.forum.domain.entity.Category;
+import com.common.forum.domain.repository.CategoryRepository;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
