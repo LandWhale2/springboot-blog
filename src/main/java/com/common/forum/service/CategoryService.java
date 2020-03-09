@@ -26,11 +26,11 @@ public class CategoryService {
   }
 
   public void delete(Long id) {
-    categoryRepository.delete(id);
+    categoryRepository.deleteById(id);
   }
 
   public void updateCategory(Category category) {
-    Category oldCategory = categoryRepository.findOne(category.getId());
+    Category oldCategory = categoryRepository.findById(category.getId()).get();
     if (oldCategory != null) {
       oldCategory.setName(category.getName());
     }
@@ -47,6 +47,6 @@ public class CategoryService {
   }
 
   public Category findOne(Long id) {
-    return categoryRepository.findOne(id);
+    return categoryRepository.findById(id).get();
   }
 }

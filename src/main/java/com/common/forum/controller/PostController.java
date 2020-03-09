@@ -8,6 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.common.forum.config.PostStatus;
+import com.common.forum.domain.entity.Category;
+import com.common.forum.domain.entity.Post;
+import com.common.forum.dto.PostDto;
+import com.common.forum.exception.NotFoundException;
+import com.common.forum.service.PostService;
+
 import javax.validation.Valid;
 
 
@@ -19,37 +26,37 @@ public class PostController {
 
   private final PostService postService;
 
-//  @GetMapping("/{id}")
-//  public String findByPost(@PathVariable Long id, Model model) {
-//    Post post = postService.findByIdAndStatus(id, PostStatus.Y);
-//    if (post == null) {
-//      throw new NotFoundException(id + " not found");
-//    }
-//    model.addAttribute("post", post);
-//    return "post/post";
-//  }
-//
-//  @GetMapping("/new")
-//  public String newPost(PostDto postDto) {
-//    return "post/new";
-//  }
-//
-//  @GetMapping("/edit/{id}")
-//  public String editPost(@PathVariable Long id, Model model) {
-//    Post post = postService.findByIdAndStatus(id, PostStatus.Y);
-//    if (post == null) {
-//      throw new NotFoundException(id + " not found");
-//    }
-//    PostDto createPost = new PostDto();
-//    createPost.setCategoryId(post.getCategory().getId());
-//    createPost.setCategoryName(post.getCategory().getName());
-//    createPost.setTitle(post.getTitle());
-//    createPost.setCode(post.getCode());
-//    createPost.setContent(post.getContent());
-//    createPost.setId(id);
-//    model.addAttribute("editPost", createPost);
-//    return "post/edit";
-//  }
+  @GetMapping("/{id}")
+  public String findByPost(@PathVariable Long id, Model model) {
+    Post post = postService.findByIdAndStatus(id, PostStatus.Y);
+    if (post == null) {
+      throw new NotFoundException(id + " not found");
+    }
+    model.addAttribute("post", post);
+    return "post/post";
+  }
+
+  @GetMapping("/new")
+  public String newPost(PostDto postDto) {
+    return "post/new";
+  }
+
+  @GetMapping("/edit/{id}")
+  public String editPost(@PathVariable Long id, Model model) {
+    Post post = postService.findByIdAndStatus(id, PostStatus.Y);
+    if (post == null) {
+      throw new NotFoundException(id + " not found");
+    }
+    PostDto createPost = new PostDto();
+    createPost.setCategoryId(post.getCategory().getId());
+    createPost.setCategoryName(post.getCategory().getName());
+    createPost.setTitle(post.getTitle());
+    createPost.setCode(post.getCode());
+    createPost.setContent(post.getContent());
+    createPost.setId(id);
+    model.addAttribute("editPost", createPost);
+    return "post/edit";
+  }
 
   @PostMapping
   public String createPost(@ModelAttribute @Valid PostDto createPost, BindingResult bindingResult, Model model) {

@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.common.forum.domain.entity.Category;
+import com.common.forum.dto.CategoryDto;
+import com.common.forum.service.CategoryService;
+
 import javax.validation.Valid;
 
 
