@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.common.forum.domain.entity.Comment;
+import com.common.forum.domain.repository.CommentRepository;
+
 import java.time.LocalDateTime;
 
 @Service
